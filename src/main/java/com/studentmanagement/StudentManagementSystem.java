@@ -19,7 +19,8 @@ public class StudentManagementSystem {
             System.out.println("2. View All Students");
             System.out.println("3. Search Student");
             System.out.println("4. Delete Student");
-            System.out.println("5. Exit");
+            System.out.println("5. Calculate Average CGPA");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
@@ -39,18 +40,22 @@ public class StudentManagementSystem {
                     break;
 
                 case 4:
-                    deleteStudent();
-                    break;
+                   deleteStudent();
+                   break;
 
                 case 5:
-                    System.out.println("Exiting application...");
-                    break;
+                   calculateAverageCgpa();
+                   break;
+
+                case 6:
+                   System.out.println("Exiting application...");
+                   break;
 
                 default:
                     System.out.println("Invalid choice!");
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
 
         scanner.close();
     }
@@ -125,4 +130,21 @@ public class StudentManagementSystem {
 
         System.out.println("Student not found.");
     }
+    private static void calculateAverageCgpa() {
+
+    if (students.isEmpty()) {
+        System.out.println("No students available.");
+        return;
+    }
+
+    double total = 0;
+
+    for (Student student : students) {
+        total += student.getCgpa();
+    }
+
+    double average = total / students.size();
+
+    System.out.println("Average CGPA: " + average);
+}
 }
